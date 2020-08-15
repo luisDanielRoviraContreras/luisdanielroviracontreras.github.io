@@ -1,0 +1,11 @@
+{
+    "name": "HTML Progressive Web App",
+    "short_name": "HTML PWA",
+    "description": "A very cool web app powered by zUIx.js",
+    "theme_color": "#f5f8fa",
+    "background_color": "white",
+    "display": "standalone",
+    "Scope": "./",
+    "start_url": "index.html",
+    "splash_pages": null
+  }
