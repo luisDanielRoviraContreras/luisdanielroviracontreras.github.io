@@ -1,8 +1,8 @@
 {
-    "name": "HTML Progressive Web App",
-    "short_name": "HTML PWA",
-    "description": "A very cool web app powered by zUIx.js",
-    "theme_color": "#f5f8fa",
+    "name": "Links Luisdanielroviracontreras",
+    "short_name": "Luisdanielroviracontreras - instagram - github - twitter",
+    "description": "Links Luisdanielroviracontreras",
+    "theme_color": "#fff",
     "background_color": "white",
     "display": "standalone",
     "Scope": "./",
