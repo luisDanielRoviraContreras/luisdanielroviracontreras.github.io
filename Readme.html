@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<h4>Registro </h4>
+EndPoint local .=> http://localhost/ekambia/public/register
+<br>
+EndPoint Aws   ..=>http://3.16.43.49/api/register
+<br>
+Método   ..=> Post
+<br>
+<br>
+En Postman llenas en el body 4 opciones : 
+<br>
+KEY email y VALUE correonoexistente@xdominio.com - Esta llave es obligatoria
+<br>
+KEY password y VALUE saxsaxsax - Esta llave es obligatoria
+<br>
+KEY password_confirmation y VALUE saxsaxsax - Esta llave es obligatoria
+<br>
+KEY profile_id y VALUE 1 0 2 - Esta llave es obligatoria 
+<br>
+El valor 1 indica que es una persona natural que se registra y el valor 2 que es una Empresa la que se está registrando 
+<br>
+Pulsas Send 
+<br>
+Deberías recibir un token que indica que tu operación fue exitosa - además en Status un código 200 (todo ok)
+<br>
+<br>
+Params Vue .....    => email, password, password_confirmation, profile_id
+<br>
+Retorno Params Laravel
+<br>
+token, Status 200 (Todo Ok)
+<br>
+Correo existente - "Email ya ha sido tomado", Status 422 (Unprocessable Entity)
+<br>
+Falta correo - "email requerido", Status 422 (Unprocessable Entity)
+<br>
+Falta clave - "password confirmation no match", Status 422 (Unprocessable Entity)
+<br>
+Falta confirmacion de clave.. - "password confirmation no match", Status 422 (Unprocessable Entity)
+<br>
+Mal la confirmacion de clave - "password confirmation no match", Status 422 (Unprocessable Entity)
+<br>
+Mal método - "El GET metodo no es soportado para esta ruta", Status 405 (Method Not Allowed)
+<br>
+* Validaciones *
+<br>
+email ..............................=> required, string, email, max:255, unique:users,
+<br>
+password .......................=> required, string, min:8, confirmed,
+<br>
+password_confirmation.=> required, string, min:8, confirmed,
+<br>
+Notas          =>
+<br>
+<br>
+<br>
+
+<h4>Login</h4>
+EndPoint local .=> http://localhost/ekambia/public/login
+<br>
+EndPoint Aws   ..=>http://3.16.43.49/api/login
+<br>
+Método   ..=> Post
+<br>
+<br>
+en Postman debes llenar en el body 2 opciones:
+<br>
+KEY email y VALUE correoregistradoantesoexistente@xdominio.com  -  como paulo@gm.com
+<br>
+KEY password y VALUE saxsaxsax - clave asignada
+<br>
+Pulsas Send 
+<br>
+Deberías recibir un token que indica que tu operación fue exitosa - además un código 200 (todo ok)
+<br>
+Guarda este token que te servirá para acceder a los recursos posteriores
+<br>
+<br>
+Params Vue .....    => email, password
+<br>
+Retorno Params Laravel
+<br>
+token, Status 200 (Todo Ok)
+<br>
+Mal correo - "Usuario no existe", Status 422 (Unprocessable Entity)
+<br>
+Mal clave  - "clave no coincide", Status 422 (Unprocessable Entity)
+<br>
+Falta correo - "email requerido", Status 422 (Unprocessable Entity)
+<br>
+Falta clave - "password requerido", Status 422 (Unprocessable Entity)
+<br>
+Mal método - "El GET metodo no es soportado para esta ruta", Status 405 (Method Not Allowed)
+<br>
+* Validaciones *
+<br>
+email ................=> required, string, email, max:255, unique:users,
+<br>
+password .........=> required, string, min:8, confirmed,
+<br>
+Notas          =>
+<br>
+<br>
+<br>
+<br>
+
+<h4>Acceso a Recurso protegido (Ejemplo Operaciones)</h4>
+EndPoint local .=> http://localhost/ekambia/public/api/operationsapi
+<br>
+EndPoint Aws   ..=>http://3.16.43.49/api/operationsapi
+<br>
+Método   ..=> Get
+<br>
+<br>
+en Postman debes llenar en el Headers 1 opción:
+<br>
+KEY authorization y VALUE Bearer hkghhjhjhjhjhgjfccccc (lo anterior es supuestamente el token que pegas aquí)
+<br>
+Pulsas Send 
+<br>
+Deberías recibir un json con la información de las operaciones de ese usuario - además un código 200 (todo ok)
+<br>
+Si usas paulo@gm.com como correo para el login ya hay varias operaciones de mentira que este usuario tiene y que recibiras en el json
+<br>
+<br>
+Params Vue .....    => token
+<br>
+Retorno Params Laravel
+<br>
+Json con info de operaciones del usuario actual, Status 200 (Todo Ok)
+<br>
+Mal método - "El POST metodo no es soportado para esta ruta", Status 405 (Method Not Allowed)
+<br>
+No proporciona el token o uno incorrecto  - "No autenticado", Status 401 (Unauthorized)
+<br>
+Notas          =>   La información va paginada, así que se puede acceder a la página 1 por medio de:
+                    "first_page_url": "http://localhost/ekambia/public/api/operationsapi?page=1"
+                    <br>
+                    A la página 2 por medio de:
+                    "next_page_url": "http://localhost/ekambia/public/api/operationsapi?page=2"
+                    <br>
+                    dependiendo en que página se encuentre en ese momento el front end la solicitará
+                    <br>
+                    "per_page" te dice el número de elementos por página a mostrar (como está configurado)
+                    <br>
+                    "total" especifica el número total de elementos a recibir
+<br>
